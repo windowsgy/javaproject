@@ -1,6 +1,5 @@
-import base.DateTimeUtils;
 import buildEnv.BuildEnv;
-import format.FormatData;
+import format.Format;
 import buildParams.Init;
 import importData.ImportData;
 
@@ -32,7 +31,7 @@ public class Start {
 
         //数据格式化模块执行
 
-        if(!FormatData.run()){
+        if(!Format.accessOrders()){
             return;
         }
 

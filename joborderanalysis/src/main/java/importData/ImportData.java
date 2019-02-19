@@ -10,25 +10,39 @@ import java.util.Map;
 
 public class ImportData {
 
-    public static boolean run(){
+    /**
+     * @return boolean
+     */
+    public static boolean run() {
         FileUtils fileUtils = new FileUtils();
         JsonUtils jsonUtils = new JsonUtils();
-        List<String> fileList = fileUtils.getFilesName(Params.jsonPath);
-        //json to map ;
-        List<Map<String,Object>> map = jsonUtils.jsonToMap(fileList);
-
-        for(int i = 0 ; i < fileList.size();i++){
-            String filePath = Params.jsonPath+fileList.get(i);
+        List<String> fileNameList = fileUtils.getFilesName(Params.jsonPath);
+        for (String aFileList : fileNameList) {
+            String filePath = Params.jsonPath + aFileList;
             String fileCode = fileUtils.getFileCode(filePath);
-            List<String> list = fileUtils.read2List(filePath,0,fileCode);
+            List<String> list = fileUtils.read2List(filePath, 0, fileCode);
+            //json to map ;
+            List<Map<String, Object>> map = jsonUtils.jsonToMap(list);
             Log.info("build client");
-            Client client = ES_Client.run(Params.es_cluster_name,Params.es_node1,Params.es_node2);
-            Log.info("create index");
-            ES_Index.createIndex(Params.es_index_name,client);
-            Log.info("build map");
-            ES_Mapping.buildIndexMap(Params.es_index_name,Params.es_index_type,client);
-            Log.info("bulk");
-            ES_ImportData.bulk(client,list,Params.es_index_name,Params.es_index_type);
+            Client client = ES_Client.run(Params.es_cluster_name, Params.es_node1, Params.es_node2);
+            Log.info("get index");
+            List<String> listIndex = ES_Index.getIndex(client);
+            for (int i = 0; i < listIndex.size(); i++) {
+                if (listIndex.contains(Params.es_index_name)) {
+                    Log.error("index existed");
+                    client.close();
+                    return false;
+                } else {
+                    Log.info("create index");
+                    if(!ES_Index.createIndex(Params.es_index_name, client)){
+                        return false;
+                    }
+                    Log.info("build index mapping");
+                    ES_Mapping.buildIndexMap(Params.es_index_name, Params.es_index_type, client);
+                    Log.info("bulk");
+                    ES_ImportData.bulk(client, map, Params.es_index_name, Params.es_index_type);
+                }
+            }
             client.close();
         }
         return true;

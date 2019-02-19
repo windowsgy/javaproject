@@ -1,26 +1,28 @@
 package importData;
 
+import base.Log;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.client.Client;
 
 import java.util.List;
 import java.util.Map;
 
-public class ES_ImportData {
+class ES_ImportData {
 
-    public static void  bulk (Client client , List<Map<String,Object>> list, String indexName, String type) {
+    static void  bulk(Client client, List<Map<String, Object>> list, String indexName, String type) {
         try {
+            Log.info("data size is :"+list.size());
             int count = 0;
             // 开启批量插入
             BulkRequestBuilder bulkRequest = client.prepareBulk();
-            for (int i = 0; i < list.size(); i++) {
+            for (Map<String, Object> maps : list) {
                 count++;
-                Map<String,Object> mapper = list.get(i);
                 // log.info("JSON : "+value);
-                bulkRequest.add(client.prepareIndex(indexName, type).setSource(mapper));
+                bulkRequest.add(client.prepareIndex(indexName, type).setSource(maps));
             }
             bulkRequest.execute().actionGet();
             bulkRequest.request().requests().clear();
+            Log.info("bulk to es data size is :"+count);
         } catch (Exception e) {
             e.printStackTrace();
 

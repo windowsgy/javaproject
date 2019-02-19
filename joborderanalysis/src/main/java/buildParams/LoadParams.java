@@ -34,13 +34,9 @@ public class LoadParams {
         Params.es_index_type = Params.paramsMap.get("es_index_type");
 
 
-
-        if(null == Params.mainPath ||null == Params.currentMainPath
-                ||null == Params.jsonPath ||null == Params.dataTimeFormat
-                || null == Params.es_cluster_name || null == Params.es_node1
-                ||null == Params.es_node2 ){
-            return false;
-        }
-        return true;
+        return null != Params.mainPath && null != Params.currentMainPath
+                && null != Params.jsonPath && null != Params.dataTimeFormat
+                && null != Params.es_cluster_name && null != Params.es_node1
+                && null != Params.es_node2;
     }
 }

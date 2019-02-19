@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Params {
 
-    public static Map<String,String> paramsMap = new HashMap<>();
+    static Map<String,String> paramsMap = new HashMap<>();
 
     //配置文件初始化参数
     public static String mainPath;//主路径

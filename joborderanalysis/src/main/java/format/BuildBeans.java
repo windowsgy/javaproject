@@ -9,10 +9,9 @@ class BuildBeans {
      * excelList转换为 pojo
      * @return List
      */
-    static List<OrderBeans> run(List<List<String>> list){
+    static List<OrderBeans> accessOrders(List<List<String>> list){
         List<OrderBeans> orderPojos = new ArrayList<>();
-        for (int i = 0 ; i < list.size();i++) {
-            List<String> line = list.get(i);
+        for (List<String> line : list) {
             OrderBeans pojo = new OrderBeans();
             // 客户经理
             pojo.setSalesman(line.get(0));

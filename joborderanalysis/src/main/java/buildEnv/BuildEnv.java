@@ -6,6 +6,10 @@ import buildParams.Params;
 
 public class BuildEnv {
 
+    /**
+     * 构建环境，创建目录
+     * @return boolean
+     */
     public static boolean run(){
         FileUtils fileUtils = new FileUtils();
         Log.info("create current main path");
@@ -19,10 +23,7 @@ public class BuildEnv {
             }
         }
         Log.info("create json Path");
-        if(!fileUtils.createDir(Params.jsonPath)){
-            return false;
-        }
-        return true;
+        return fileUtils.createDir(Params.jsonPath);
     }
 
 }

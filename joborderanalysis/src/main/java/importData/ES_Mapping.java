@@ -9,16 +9,17 @@ import java.io.IOException;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-public class ES_Mapping {
+class ES_Mapping {
+
     /**
      * 创建索引映射
-     *
      * @param indexName indexName
      * @param typeName  type
      * @param client    es client
      */
 
-    public static void buildIndexMap(String indexName, String typeName, Client client) {
+    static void buildIndexMap(String indexName, String typeName, Client client) {
+
         PutMappingRequest mapping = Requests.putMappingRequest(indexName)
                 .type(typeName).source(getAccessOrdersMapping());
         client.admin().indices().putMapping(mapping).actionGet();
@@ -27,8 +28,7 @@ public class ES_Mapping {
 
     /**
      * 构建接入型工单mapping
-     *
-     * @return XcontentBuilder
+     * @return builder
      */
     private static XContentBuilder getAccessOrdersMapping() {
         XContentBuilder mapping = null;

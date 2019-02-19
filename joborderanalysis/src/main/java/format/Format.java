@@ -5,14 +5,14 @@ import buildParams.Params;
 
 import java.util.List;
 
-public class FormatData {
+public class Format {
 
     /**
      * 输入数据路径格式化方法
      * 程序启动输入数据路径参数，根据参数格式化EXCEL文件
      * @return boolean
      */
-    public static boolean run(){
+    public static boolean accessOrders(){
         Log.info("run FormatData");
         FileUtils fileUtils = new FileUtils();
         ListUtils listUtils = new ListUtils();
@@ -24,22 +24,22 @@ public class FormatData {
             Log.info("load file is:"+ fileFullPath);
             //数据格式转换
             Log.info("file transition");
-            String str = OrderTransition.accessOrders(fileFullPath);
+            String str = Transition.accessOrders(fileFullPath);
             Log.info("string to Array");
             List<String> list = StringUtils.stringToList(str);//字符串转数组
             Log.info("filter");
-            list = FilterData.run(list);//过滤
+            list = Filter.accessOrders(list);//过滤
             //切分字段生成List
             Log.info("fields splint");
             List<List<String>> listFields = listUtils.list2ListFields(list,"\\|\\|");
             //build beans
             Log.info("to bean");
-            List<OrderBeans> orderBeansList = BuildBeans.run(listFields);
+            List<OrderBeans> orderBeansList = BuildBeans.accessOrders(listFields);
             //增加维度
-            AddDimensionality.run(orderBeansList);
+            Add.accessOrders(orderBeansList);
             //build json
             Log.info("to json");
-            List<String> listJson =  jsonUtils.listBeanToListJson(listFields);//BuildJSON.run(orderBeansList);
+            List<String> listJson =  jsonUtils.listBeanToListJson(listFields);
             //文件全路径
             String jsonFileFullPath = Params.jsonPath+aFileList;
             fileUtils.createFile(jsonFileFullPath);
