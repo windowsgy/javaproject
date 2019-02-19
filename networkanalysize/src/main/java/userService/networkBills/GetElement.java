@@ -10,17 +10,14 @@ import base.FileUtils;
 import java.util.*;
 
 public class GetElement {
-
     private static WebDriver bro;
     private static JavascriptExecutor broJs;
-
     //脚本
     private static final String CLICK = "arguments[0].click()";
     private static final String EDIT_BILL_JS = "setTimeout(function(){document.getElementsByTagName('button')[1].click()},100)";
     private static final String EDIT_STEP_JS = "setTimeout(function(){document.getElementsByTagName('button')[2].click()},100)";
     private static final String EDIT_STEP_ELENIUM_XPATH = "//FONT |//H3 | //P | //INPUT[@type = 'text'] | //TEXTAREA";
     private static final String EDIT_STEP_QUIT_XPACH = "//div[@align = 'center']/input[3]";
-
     private static String editBill;
     private static String editStep;
     private static FileUtils fileUtils = new FileUtils();

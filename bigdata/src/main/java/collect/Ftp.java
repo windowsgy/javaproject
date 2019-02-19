@@ -14,19 +14,13 @@ import java.net.SocketException;
  */
 
 public class Ftp {
-
     private static String ip = "172.16.148.3";//FTP 服务器IP地址
-
     private static int port = 9800;//FTP 服务器端口
-
     private static String username = "qoeym"; //FTP 登陆用户名
-
     private static String password = "Bjhmdys@QOE!@# "; //FTP 登陆密码
-
 
     /**
      * FTP服务器建立连接方法
-     *
      * @param localFilePath  本地文件路径
      * @param remoteDir      远程目录
      * @param remoteFileName 远程文件名
@@ -84,65 +78,36 @@ public class Ftp {
      * @return
      */
     public static boolean upLoadFile(FTPClient ftpClient, String remoteFtpDir, String remoteFileName, String localFilePath) {
-
         boolean success = false;
-
         try {
-
             FileInputStream input = new FileInputStream(new File(localFilePath));
-
             System.out.println("开始上传文件到" + remoteFtpDir + remoteFileName);
-
             int reply = ftpClient.getReplyCode();
-
         /*System.out.println("replyCode:" +reply);*/
-
             if (!FTPReply.isPositiveCompletion(reply)) {
-
                 ftpClient.disconnect();
-
                 return success;
             }
-
             success = ftpClient.changeWorkingDirectory(remoteFtpDir);
-
             if (success == false) {
                 System.out.println("指定目录不存在");
-
                 return success;
-
             }
-
             success = ftpClient.storeFile(remoteFileName, input);
-
         /*System.out.println("putReply:" +success);*/
-
             input.close(); //输入流关闭
-
             ftpClient.logout();//退出
-
         } catch (IOException e) {
-
             e.printStackTrace();
-
         } finally {
-
             if (ftpClient.isConnected()) {
-
-
                 try {
                     ftpClient.disconnect();
-
                 } catch (IOException ioe) {
-
                 }
-
             }
-
         }
         return success;
-
     }
-
 }
 

@@ -215,6 +215,8 @@ public class FileUtils {
     }
 
     /**
+     *
+     * 字符串写入文件方法
      * @param str  字符串
      * @param path 文件路径
      * @param code 字符编码
@@ -288,7 +290,7 @@ public class FileUtils {
      * @param filePath filePath
      * @return 文件编码格式
      */
-    public String codeString(String filePath) {
+    public String getFileCode(String filePath) {
         String code = "dont know";
         File file = new File(filePath);
         try {

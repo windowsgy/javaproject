@@ -25,6 +25,7 @@ public class LoadProperties {
                 map.put(keyString, valString);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             Log.error(e.getMessage());
             Log.error("Load Config Failed :" + fileName);
             return false;

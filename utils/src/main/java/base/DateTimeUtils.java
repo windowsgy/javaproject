@@ -17,8 +17,8 @@ public class DateTimeUtils {
 
     /**
      * 获取当前 日期时间字段
-     *
-     * @return 日期字段
+     * @param dateTimeFormat 日期时间格式
+     * @return 日期时间
      */
     public  String getCurTime(String dateTimeFormat) {
         SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
@@ -134,11 +134,11 @@ public class DateTimeUtils {
     /**
      * 日期时间格式检查
      *
-     * @param dateTime   日期时间格式
+     * @param dateTime   日期时间
      * @param dateFormat 时间格式
      * @return boolean
      */
-    public  boolean dtFormatCheak(String dateTime, String dateFormat) {
+    public  boolean dtFormatCheck(String dateTime, String dateFormat) {
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);// 设置日期转化成功标识
         try {
             format.parse(dateTime);

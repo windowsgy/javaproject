@@ -10,8 +10,5 @@ public class StringUtils {
         String [] strArray = str.split("\r\n");
         List<String> list = Arrays.asList(strArray);
         return list;
-
     }
-
-
 }

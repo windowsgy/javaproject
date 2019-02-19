@@ -1,4 +1,4 @@
-package collect.excel;
+package base;
 
 
 import org.apache.poi.ss.usermodel.*;
@@ -15,13 +15,13 @@ import java.util.*;
 public class ExcelUtils {
 
     /**
-     * EXCEL 文件转换为map  EXCEL文件中每个表格对应一个Key,  Value List 每行 ，List 每列
+     * EXCEL 文件转换为map  EXCEL文件中每个表格名对应一个Key 。List 每行 ，List 每列
      * 去掉了表头数据
-     *
      * @param filePath excel文件路径
      * @return map
      */
-    public static Map<String, List<List<String>>> xlsToString(String filePath) {
+    public  Map<String, List<List<String>>> xlsToString(String filePath) {
+        //System.out.println("excel File Path is :"+filePath);
         Map<String, List<List<String>>> map = new HashMap<>();
         File xlsFile = new File(filePath);
         if (!xlsFile.exists()) { //判断文件是否存在
@@ -30,6 +30,7 @@ public class ExcelUtils {
         try {
             Workbook wb = WorkbookFactory.create(xlsFile);
             int sheetNum = wb.getNumberOfSheets();//获取EXCEL表数量
+            System.out.println("sheetNum is :"+sheetNum);
             Sheet sheet;
             for (int sheetIndex = 0; sheetIndex < sheetNum; sheetIndex++) {//遍历sheet(index 0开始)
                 sheet = wb.getSheetAt(sheetIndex);
@@ -87,7 +88,9 @@ public class ExcelUtils {
                     }//end every row
                 }//end rows
                 rowList.remove(0);//去掉表头
-                map.put(wb.getSheetName(sheetIndex), rowList);
+                //Map 中 key 名称为 文件名加表格名
+                String keyName = wb.getSheetName(sheetIndex);
+                map.put(keyName, rowList);
             }//end sheets
         } catch (Exception e) {
             System.out.println(e.getMessage());

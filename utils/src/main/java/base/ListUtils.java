@@ -1,5 +1,8 @@
 package base;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -50,7 +53,6 @@ public class ListUtils {
         }
         return listArray;
     }
-
 
     /**
      * List 按分隔符拆分为  行、列 字段模式
@@ -109,7 +111,6 @@ public class ListUtils {
         return newList;
     }
 
-
     /**
      * 选取数组中字段，添加至List ,用于选择字段
      * @param listArray List
@@ -123,4 +124,18 @@ public class ListUtils {
         }
         return list;
     }
+
+    /**
+     * List 转换为 字符串
+     */
+
+    public String list2String(List<String> list){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i < list.size();i++){
+            sb.append(list.get(i));
+        }
+        return sb.toString();
+    }
+
+
 }
