@@ -1,8 +1,8 @@
-package etl.transition;
+package etl.transfer;
 
 import java.util.List;
 
-public class Trans {
+public class Transfer {
 
     /**
      * 工单系统下载文件转换方法

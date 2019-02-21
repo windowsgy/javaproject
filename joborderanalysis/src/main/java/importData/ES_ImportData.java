@@ -18,15 +18,13 @@ class ES_ImportData {
             for (Map<String, Object> maps : list) {
                 count++;
                 // log.info("JSON : "+value);
-                bulkRequest.add(client.prepareIndex(indexName, type).setSource(maps));
+                bulkRequest.add(client.prepareIndex(indexName, type,maps.get("id").toString()).setSource(maps));
             }
             bulkRequest.execute().actionGet();
             bulkRequest.request().requests().clear();
             Log.info("bulk to es data size is :"+count);
         } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 }

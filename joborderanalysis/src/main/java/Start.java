@@ -1,7 +1,7 @@
 import base.FileUtils;
 
 import buildEnv.BuildEnv;
-import buildParams.Params;
+import buildParams.ParamsBase;
 import buildParams.Init;
 import etl.Etl;
 import importData.ImportData;
@@ -30,14 +30,15 @@ public class Start {
             Crawler.run();
 
         }*/
-        //ETL
+        //ETL导入数据
         FileUtils fileUtils = new FileUtils();
-        List<String> fileList = fileUtils.getFilesName(Params.sourcePath);
+        List<String> fileList = fileUtils.getFilesName(ParamsBase.sourcePath);
         for (String aFileList : fileList) {
-            String sourcePath = Params.sourcePath + aFileList;
-            String desPath = Params.jsonPath + aFileList;
-            Etl.run(sourcePath, desPath);
+            String sourcePath = ParamsBase.sourcePath + aFileList;
+            String formatPath = ParamsBase.formatPath + aFileList;
+            String jsonPath = ParamsBase.jsonPath + aFileList;
+            List<String> listJson = Etl.run(sourcePath, formatPath,jsonPath);
+         // ImportData.run(listJson);
         }
-        ImportData.run();
     }
 }

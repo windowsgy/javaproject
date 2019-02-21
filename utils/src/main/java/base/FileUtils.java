@@ -261,6 +261,26 @@ public class FileUtils {
             return false ;
         }
     }
+    /**
+     * 获取文件名称
+     *
+     * @param path 路径
+     * @return List
+     */
+    public String getFileName(String path) {
+        try {
+            File file = new File(path);
+            if(!file.exists() && !file.isFile()){
+                Log.error(path+" :not exists");
+            }else {
+                return file.getName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * 获取文件名称到List

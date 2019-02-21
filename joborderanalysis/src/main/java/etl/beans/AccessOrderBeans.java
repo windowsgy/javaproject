@@ -354,25 +354,25 @@ public class AccessOrderBeans {
         this.terminalReceivePower = getTerminalReceivePower;
     }
 
-    // 客户经理
+    // 客户经理 1
     private String salesman;
-    // 当当快
+    // 当当快 2
     private String efficient;
-    // 小区名称
+    // 小区名称 3
     private String residenceCommunity;
-    //装机地址
+    //装机地址 4
     private String address;
-    //接入号
+    //接入号 5
     private String accessNum;
     //客户名称
     private String clientName;
-    //状态
+    //状态 6
     private String status;
-    //预约上门时间
+    //预约上门时间 7
     private String makeServiceTime;
-    //任务结束时间
+    //任务结束时间 8
     private String taskEndTime;
-    //受理时间
+    //受理时间 9
     private String acceptTime;
     //联系人
     private String linkMan;
@@ -445,6 +445,8 @@ public class AccessOrderBeans {
 
     //升维字段================================================
 
+    private int count;
+
     public int getCount() {
         return count;
     }
@@ -452,8 +454,6 @@ public class AccessOrderBeans {
     public void setCount(int count) {
         this.count = count;
     }
-
-    private int count;
 
     public String getTimesTamp() {
         return timesTamp;
@@ -463,7 +463,40 @@ public class AccessOrderBeans {
         this.timesTamp = timesTamp;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImportTime() {
+        return importTime;
+    }
+
+    public void setImportTime(String importTime) {
+        this.importTime = importTime;
+    }
+
+    public String getImportFile() {
+        return importFile;
+    }
+
+    public void setImportFile(String importFile) {
+        this.importFile = importFile;
+    }
+
     private String timesTamp ;
+
+    private String id;
+
+    private String importTime;
+
+    private String importFile;
+
+
+
 
 
 

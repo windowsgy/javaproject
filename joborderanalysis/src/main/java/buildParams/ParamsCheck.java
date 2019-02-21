@@ -34,8 +34,8 @@ public class ParamsCheck {
      */
     private static boolean noParams(){
         DateTimeUtils dateTimeUtils = new DateTimeUtils();
-        Params.startTime = dateTimeUtils.getCurTime(Params.dataTimeFormat)+" 00:00:00";
-        Params.endTime = Params.startTime+" 23:59:59";
+        ParamsBase.startTime = dateTimeUtils.getCurTime(ParamsBase.dataTimeFormat)+" 00:00:00";
+        ParamsBase.endTime = ParamsBase.startTime+" 23:59:59";
         return true;
     }
 
@@ -48,8 +48,8 @@ public class ParamsCheck {
         FileUtils fileUtils = new FileUtils();
         if (fileUtils.isDir(args[0])){
             Log.info("get local data path is : "+args[0]);
-            Params.sourcePath = args[0];//设定本地数据路径
-            Params.loadLocalData = true;//设定程序执行步骤为本地数据加载
+            ParamsBase.sourcePath = args[0];//设定本地数据路径
+            ParamsBase.loadLocalData = true;//设定程序执行步骤为本地数据加载
         }else if (args[0].length()==6){//如果参数格式为月
             Log.info("get"+args[0]+" time orders");
         }else if (args[0].length()==8){//如果参数格式为日

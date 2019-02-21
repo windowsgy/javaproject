@@ -12,7 +12,7 @@ public class BuildBeans {
      * @return List
      */
     public static List<AccessOrderBeans> accessOrders(List<List<String>> list){
-        List<AccessOrderBeans> orderPojos = new ArrayList<>();
+        List<AccessOrderBeans> orderPojo = new ArrayList<>();
         for (List<String> line : list) {
             AccessOrderBeans pojo = new AccessOrderBeans();
             // 客户经理
@@ -103,10 +103,13 @@ public class BuildBeans {
             pojo.setTerminalSendPower(line.get(42));
             //终端接收送光功率
             pojo.setTerminalReceivePower(line.get(43));
-
-            orderPojos.add(pojo);
+            //导入时间
+            pojo.setImportTime(line.get(44));
+            //导入文件
+            pojo.setImportFile(line.get(45));
+            orderPojo.add(pojo);
         }
-        return orderPojos;
+        return orderPojo;
     }
 
 }

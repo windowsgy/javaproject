@@ -12,31 +12,32 @@ public class LoadParams {
     public static boolean run(){
         Log.info("load properties");
         DateTimeUtils dateTimeUtils = new DateTimeUtils();
-        if(!LoadProperties.paramMap("params.properties",Params.paramsMap)){
+        if(!LoadProperties.paramMap("params.properties", ParamsBase.paramsMap)){
             return false;
         }
-        Params.dataTimeFormat = Params.paramsMap.get("dataTimeFormat");
-        Params.runTime = dateTimeUtils.getCurTime(Params.dataTimeFormat);
+        ParamsBase.dataTimeFormat = ParamsBase.paramsMap.get("dataTimeFormat");
+        ParamsBase.runTime = dateTimeUtils.getCurTime(ParamsBase.dataTimeFormat);
 
-        Params.mainPath = Params.paramsMap.get("mainPath");
-        Params.currentMainPath=Params.mainPath+Params.runTime;
-        if(null == Params.sourcePath ){//如果程序启动未指定源数据路径，则设定源数据路径
-            Params.sourcePath = Params.currentMainPath+Params.paramsMap.get("sourcePath");
+        ParamsBase.mainPath = ParamsBase.paramsMap.get("mainPath");
+        ParamsBase.currentMainPath= ParamsBase.mainPath+ ParamsBase.runTime;
+        if(null == ParamsBase.sourcePath ){//如果程序启动未指定源数据路径，则设定源数据路径
+            ParamsBase.sourcePath = ParamsBase.currentMainPath+ ParamsBase.paramsMap.get("sourcePath");
         }
 
-        Params.jsonPath = Params.currentMainPath+Params.paramsMap.get("jsonPath");
+        ParamsBase.jsonPath = ParamsBase.currentMainPath+ ParamsBase.paramsMap.get("jsonPath");
+        ParamsBase.formatPath = ParamsBase.currentMainPath+ ParamsBase.paramsMap.get("formatPath");
 
-        Params.es_cluster_name = Params.paramsMap.get("es-cluster");
-        Params.es_node1 = Params.paramsMap.get("es_node1");
-        Params.es_node2 = Params.paramsMap.get("es_node2");
+        ParamsBase.es_cluster_name = ParamsBase.paramsMap.get("es-cluster");
+        ParamsBase.es_node1 = ParamsBase.paramsMap.get("es_node1");
+        ParamsBase.es_node2 = ParamsBase.paramsMap.get("es_node2");
 
-        Params.es_index_name = Params.paramsMap.get("es_index_name");
-        Params.es_index_type = Params.paramsMap.get("es_index_type");
+        ParamsBase.es_index_name = ParamsBase.paramsMap.get("es_index_name");
+        ParamsBase.es_index_type = ParamsBase.paramsMap.get("es_index_type");
 
 
-        return null != Params.mainPath && null != Params.currentMainPath
-                && null != Params.jsonPath && null != Params.dataTimeFormat
-                && null != Params.es_cluster_name && null != Params.es_node1
-                && null != Params.es_node2;
+        return null != ParamsBase.mainPath && null != ParamsBase.currentMainPath
+                && null != ParamsBase.jsonPath && null != ParamsBase.dataTimeFormat
+                && null != ParamsBase.es_cluster_name && null != ParamsBase.es_node1
+                && null != ParamsBase.es_node2;
     }
 }
