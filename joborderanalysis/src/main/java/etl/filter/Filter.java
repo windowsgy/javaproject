@@ -1,11 +1,11 @@
-package format;
+package etl.filter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Filter {
-    static List<String> accessOrders(List<String> list){
+public class Filter {
+    public static List<String> accessOrders(List<String> list){
 
         List<String> newList = new ArrayList<>();
         for (String line : list) {

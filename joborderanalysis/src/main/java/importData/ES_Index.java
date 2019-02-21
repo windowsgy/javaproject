@@ -16,9 +16,9 @@ class ES_Index {
 
         ClusterStateResponse response = client.admin().cluster().prepareState()
                 .execute().actionGet();
-        String[] indexs = response.getState().getMetaData()
+        String[] index = response.getState().getMetaData()
                 .getConcreteAllIndices();
-        return Arrays.asList(indexs);
+        return Arrays.asList(index);
     }
 
 

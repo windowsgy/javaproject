@@ -2,6 +2,9 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/bigdata/src/main/java/sourcePath/20180801205198.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/joborderanalysis/src/main/java/etl/Format.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/joborderanalysis/src/main/java/importData/ImportData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils/src/main/java/base/TranslationUtils.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

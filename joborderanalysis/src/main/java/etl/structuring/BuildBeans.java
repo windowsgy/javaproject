@@ -1,18 +1,20 @@
-package format;
+package etl.structuring;
+
+import etl.beans.AccessOrderBeans;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class BuildBeans {
+public class BuildBeans {
 
     /**
      * excelList转换为 pojo
      * @return List
      */
-    static List<OrderBeans> accessOrders(List<List<String>> list){
-        List<OrderBeans> orderPojos = new ArrayList<>();
+    public static List<AccessOrderBeans> accessOrders(List<List<String>> list){
+        List<AccessOrderBeans> orderPojos = new ArrayList<>();
         for (List<String> line : list) {
-            OrderBeans pojo = new OrderBeans();
+            AccessOrderBeans pojo = new AccessOrderBeans();
             // 客户经理
             pojo.setSalesman(line.get(0));
             // 当当快

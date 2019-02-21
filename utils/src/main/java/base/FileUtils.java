@@ -117,10 +117,9 @@ public class FileUtils {
     /**
      * @param path       文件路径
      * @param lineNumber 从第几行开始读取
-     * @param code       文件编码
      * @return list
      */
-    public List<String> read2List(String path, long lineNumber, String code) {
+    public List<String> read2List(String path, long lineNumber) {
         List<String> list = new ArrayList<>();//返回结果
         BufferedReader br;
         try {
@@ -129,7 +128,7 @@ public class FileUtils {
                 Log.warn("path is exists"+path);
                 return list;
             }
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(file), code));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String line;
             int lineCtl = 0; //读取位置控制
             //int loadLineCount = 0;//读取行数计数
@@ -285,41 +284,6 @@ public class FileUtils {
     }
 
     /**
-     * 判断文件的编码格式
-     *
-     * @param filePath filePath
-     * @return 文件编码格式
-     */
-    public String getFileCode(String filePath) {
-        String code = "dont know";
-        File file = new File(filePath);
-        try {
-            BufferedInputStream bin = new BufferedInputStream(new FileInputStream(file));
-            int p = (bin.read() << 8) + bin.read();
-            //其中的 0xefbb、0xfffe、0xfeff、0x5c75这些都是这个文件的前面两个字节的16进制数
-            switch (p) {
-                case 0xefbb:
-                    code = "UTF-8";
-                    break;
-                case 0xfffe:
-                    code = "Unicode";
-                    break;
-                case 0xfeff:
-                    code = "UTF-16BE";
-                    break;
-                case 0x5c75:
-                    code = "ANSI|ASCII";
-                    break;
-                default:
-                    code = "GBK";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return code;
-    }
-
-    /**
      * 读取文件第一行
      *
      * @param path 文件路径
@@ -411,11 +375,11 @@ public class FileUtils {
 
 
     /**
+     * 加载目录中所有的文件到map
      * @param path     dir
-     * @param charCode charCode
      * @return map
      */
-    public Map<String, List<String>> loadDirFiles(String path, String charCode) {
+    public Map<String, List<String>> loadDirFiles(String path) {
         // format source data path is exist
         if (!isDir(path)) {
             Log.error("Path does not exist\n" +
@@ -431,7 +395,7 @@ public class FileUtils {
         List<String> files = getFilesName(path);
         for (String fileName : files) {
             String filePath = path + "\\" + fileName;
-            List<String> fileList = read2List(filePath, 0, charCode);
+            List<String> fileList = read2List(filePath, 0);
             filesMap.put(fileName, fileList);
         }
         return filesMap;

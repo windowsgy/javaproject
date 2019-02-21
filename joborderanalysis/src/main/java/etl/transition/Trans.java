@@ -1,20 +1,17 @@
-package format;
-
-import base.FileUtils;
+package etl.transition;
 
 import java.util.List;
 
-class Transition {
+public class Trans {
 
     /**
      * 工单系统下载文件转换方法
-     * @param filePath 文件路径
+     *
+     * @param list 文件内容
      * @return String
      */
-    static String accessOrders(String filePath){
-        FileUtils fileUtils = new FileUtils();
-        String fileCode = fileUtils.getFileCode(filePath);
-        List<String> list = fileUtils.read2List(filePath,0,fileCode);
+
+    public static String accessOrders(List<String> list) {
         StringBuilder sb = new StringBuilder();
         for (String line : list) {
             if (line.contains("\r")) {
@@ -56,7 +53,6 @@ class Transition {
             if (line.contains("<td style=\"vnd.ms-excel.numberformat:@\">")) {
                 line = line.replace("<td style=\"vnd.ms-excel.numberformat:@\">", "");
             }
-            line = line.replace(" ","");
             sb.append(line);
         }
         return sb.toString();

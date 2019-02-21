@@ -1,6 +1,6 @@
-package format;
+package etl.beans;
 
-public class OrderBeans {
+public class AccessOrderBeans {
 
     public String getSalesman() {
         return salesman;
@@ -445,17 +445,26 @@ public class OrderBeans {
 
     //升维字段================================================
 
-
-    public String getId() {
-        return id;
+    public int getCount() {
+        return count;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    //ID
-    private String id ;
+    private int count;
+
+    public String getTimesTamp() {
+        return timesTamp;
+    }
+
+    public void setTimesTamp(String timesTamp) {
+        this.timesTamp = timesTamp;
+    }
+
+    private String timesTamp ;
+
 
 
 }

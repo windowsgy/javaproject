@@ -68,8 +68,12 @@ public class ListUtils {
         for (String lists : list) {
             lineCount++;
             String[] array = lists.split(splitChar,-1);
-            if (array.length == firstArraySize) {// 如果此行长度不等于首行字段长度
-                theList.add(Arrays.asList(array));
+            if (array.length == firstArraySize) {// 如果此行长度等于首行字段长度
+                List<String> listFields = new ArrayList<>();
+                for (String anArray : array) {
+                    listFields.add(anArray.trim());
+                }
+                theList.add(listFields);
             } else {
                 Log.error(lineCount + " :Line Error , Current Line Split Lenght : " + lists);
                 return null;
@@ -132,7 +136,7 @@ public class ListUtils {
     public String list2String(List<String> list){
         StringBuilder sb = new StringBuilder();
         for (int i = 0 ; i < list.size();i++){
-            sb.append(list.get(i));
+            sb.append(list.get(i)+"\r\n");
         }
         return sb.toString();
     }
