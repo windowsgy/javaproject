@@ -1,17 +1,9 @@
 package etl;
 
 import base.*;
-import buildParams.ParamsBase;
-import etl.beans.AccessOrderBeans;
-import etl.dimensionality.AddFields;
-import etl.dimensionality.SetFields;
-import etl.filter.Filter;
-import etl.structTransfer.StructTransfer;
-import etl.structuring.BuildBeans;
-import etl.transfer.Transfer;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Etl {
 
@@ -28,6 +20,20 @@ public class Etl {
         ListUtils listUtils = new ListUtils();
         Log.info("load file is souFilePath "+souFilePath);
         List<String> list = fileUtils.read2List(souFilePath, 0);
+
+        ExcelUtils excelUtils = new ExcelUtils();
+        Map<String,List<List<String>>> excelMap =  excelUtils.xlsToString(souFilePath);
+        for(String key : excelMap.keySet()){
+            List<List<String>> listString = excelMap.get(key);
+            for(int i = 0 ; i < listString.size();i++){
+                List<String> subList = listString.get(i);
+                for(int j = 0 ; j < subList.size();j++){
+                    System.out.println(subList.get(j));
+                }
+            }
+        }
+        return null;
+/*
         Log.info("file transition");
         String str = Transfer.accessOrders(list);
         Log.info("String to List");
@@ -65,6 +71,6 @@ public class Etl {
         Log.info("write json struct");
         fileUtils.createFile(jsonFilePath);
         fileUtils.wrStr2File(jsonString, jsonFilePath);
-        return listJson;
+        return listJson;*/
     }
 }

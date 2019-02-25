@@ -2,7 +2,7 @@ package buildEnv;
 
 import base.FileUtils;
 import base.Log;
-import buildParams.ParamsBase;
+import buildParams.Params;
 
 public class BuildEnv {
 
@@ -13,19 +13,22 @@ public class BuildEnv {
     public static boolean run(){
         FileUtils fileUtils = new FileUtils();
         Log.info("create current main path");
-        if(!fileUtils.createDir(ParamsBase.currentMainPath)){
+        if(!fileUtils.createDir(Params.currentMainPath)){
             return false;
         }
-        if(!ParamsBase.loadLocalData){
+        if(!Params.loadLocalData){
             Log.info("create sourcePath");
-            if(!fileUtils.createDir(ParamsBase.sourcePath)){
+            if(!fileUtils.createDir(Params.sourcePath)){
                 return false;
             }
         }
         Log.info("create format Path");
-        fileUtils.createDir(ParamsBase.formatPath);
+        fileUtils.createDir(Params.formatPath);
         Log.info("create json Path");
-        return fileUtils.createDir(ParamsBase.jsonPath);
+        fileUtils.createDir(Params.jsonPath);
+        Log.info("create web Path");
+        return fileUtils.createDir(Params.webPath);
+
     }
 
 }

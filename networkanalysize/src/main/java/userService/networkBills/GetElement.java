@@ -28,7 +28,7 @@ public class GetElement {
         String outPath = Params.map.get("getOutPath");//获取采集基本路径
         String filePath = Params.map.get("getBillFilePath");//采集文件路径
         System.out.println(filePath);
-        List<String> list = fileUtils.read2List(filePath, 0, "UTF-8");
+        List<String> list = fileUtils.read2List(filePath, 0);
         System.out.println("查询工单数量 :" + list.size());
         String url = Params.map.get("url");
         String driverPath = Params.map.get("driverPath");
