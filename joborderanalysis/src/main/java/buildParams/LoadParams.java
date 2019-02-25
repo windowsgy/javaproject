@@ -35,33 +35,17 @@ public class LoadParams {
         }
         Params.currentMainPath= Params.mainPath+ Params.runTime;
 
-        if( null == Params.currentMainPath ){
-            Log.error("currentMainPath is null");
-            return false;
-        }
+
         if(null == Params.sourcePath ){//如果程序启动未指定源数据路径，则设定源数据路径
             Params.sourcePath = Params.currentMainPath+ Params.paramsMap.get("sourcePath");
-            if( null == Params.sourcePath ){
-                Log.error("sourcePath is null");
-                return false;
-            }
         }
 
         Params.jsonPath = Params.currentMainPath+ Params.paramsMap.get("jsonPath");
-        if( null == Params.dataTimeFormat ){
-            Log.error("jsonPath is null");
-            return false;
-        }
+
         Params.formatPath = Params.currentMainPath+ Params.paramsMap.get("formatPath");
-        if( null == Params.formatPath ){
-            Log.error("formatPath is null");
-            return false;
-        }
+
         Params.webPath = Params.currentMainPath+ Params.paramsMap.get("webPath");
-        if( null == Params.webPath ){
-            Log.error("webPath is null");
-            return false;
-        }
+
 
         Params.es_cluster_name = Params.paramsMap.get("es-cluster");
         Params.es_node1 = Params.paramsMap.get("es_node1");
