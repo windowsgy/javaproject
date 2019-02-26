@@ -11,6 +11,7 @@ public class BuildEnv {
      * @return boolean
      */
     public static boolean run(){
+        Log.info("Build Env");
         FileUtils fileUtils = new FileUtils();
         Log.info("create current main path");
         if(!fileUtils.createDir(Params.currentMainPath)){
