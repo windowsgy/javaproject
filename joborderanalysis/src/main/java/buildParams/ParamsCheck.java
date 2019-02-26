@@ -20,9 +20,11 @@ public class ParamsCheck {
             return noParams();
         } else if (args.length == 1) { //输入日期获取工单 日/月
             return oneParams(args);
-        } else if (args.length == 2) {  //输入时间范围获取工单 日/月
+        }
+     /*   else if (args.length == 2) {  //输入时间范围获取工单 日/月
             return twoParams(args);
-        } else {
+        } */
+        else {
             Log.error("input params error");
             return false;
         }

@@ -1,6 +1,6 @@
 import buildEnv.BuildEnv;
 import buildParams.Init;
-import crawler.AutoWeb;
+import crawler.GetHistoryOrders;
 
 
 public class Start {
@@ -18,8 +18,8 @@ public class Start {
         if (!BuildEnv.run()) {
             return;
         }
-        //运行
-        AutoWeb.run();
+        //运行爬虫采集
+        GetHistoryOrders.run();
 
          /*
         if(!Params.loadLocalData){//如果不是加载本地数据则进行数据爬取模块

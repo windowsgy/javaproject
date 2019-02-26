@@ -36,6 +36,7 @@ public class Params {
     public static String driverPath;
     public static String userName;
     public static String passWord;
+    public static String zone;
     public static final String LOGIN_XPATH = "//form[@name = 'loginform']/tbody/tr/td[3]/div";
 
 
