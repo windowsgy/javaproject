@@ -53,7 +53,7 @@ public class GetElement {
         }
 
         String startTime = "2019-02-01";
-        String endTime = "2019-02-15";
+        String endTime = "2019-02-01";
         String localZone = "中国电信吉林分公司";
         if (!baseOperation.gotoHisOrders(startTime,endTime,localZone)) {
             System.out.println("进入省内装移机历史工单明细表失败");
