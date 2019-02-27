@@ -161,16 +161,16 @@ public class HistoryOrders  extends WebDispatchSystem implements WebSystem{
         Log.sleep(3);
         webElement = bro.findElement(By.xpath(LOCAL_NETWORK_L1_XPATH));//本地网选择
         broJs.executeScript(CLICK, webElement);
-        Log.sleep(5);
+        Log.sleep(3);
         webElement = bro.findElement(By.xpath(LOCAL_NETWORK_L2_XPATH));//本地网选择
         broJs.executeScript(CLICK, webElement);
-        Log.sleep(5);
+        Log.sleep(3);
         //获取所有按钮
         List<WebElement> buttonList = bro.findElements(By.tagName("BUTTON"));
         //本地网确定按钮
         webElement = buttonList.get(11);
         broJs.executeScript(CLICK, webElement);
-        Log.sleep(5);
+        Log.sleep(3);
         //生成报表按钮
         webElement = buttonList.get(0);
         broJs.executeScript(CLICK, webElement);
