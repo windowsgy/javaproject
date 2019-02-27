@@ -1,15 +1,92 @@
 package importData;
 
-
+import base.Log;
+import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.WildcardQueryBuilder;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
+
+import java.net.InetAddress;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
-public class ES_Query {
+public class ES_Utils {
+
+    /**
+     * get client
+     * @param clusterName clusterName
+     * @param host1 host1
+     * @param host2 host2
+     * @return Client
+     */
+    public  Client getClient(String clusterName, String host1, String host2){
+
+        Settings settings = Settings.builder()
+                .put("cluster.name", clusterName).build();
+        TransportClient client = new PreBuiltTransportClient(settings);
+        // on startup
+        try{
+            client = client
+                    .addTransportAddress(new TransportAddress(InetAddress.getByName(host1), 9300))
+                    .addTransportAddress(new TransportAddress(InetAddress.getByName(host2), 9300));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return client;
+    }
+
+
+
+    public void  bulk(Client client, List<Map<String, Object>> list, String indexName, String type) {
+        try {
+            Log.info("data size is :"+list.size());
+            int count = 0;
+            // 开启批量插入
+            BulkRequestBuilder bulkRequest = client.prepareBulk();
+            for (Map<String, Object> maps : list) {
+                count++;
+                // log.info("JSON : "+value);
+                bulkRequest.add(client.prepareIndex(indexName, type,maps.get("id").toString()).setSource(maps));
+            }
+            bulkRequest.execute().actionGet();
+            bulkRequest.request().requests().clear();
+            Log.info("bulk to es data size is :"+count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查找索引
+     * @return 索引列表
+     */
+    public List<String> getIndex(Client client){
+
+        ClusterStateResponse response = client.admin().cluster().prepareState()
+                .execute().actionGet();
+        String[] index = response.getState().getMetaData()
+                .getConcreteAllIndices();
+        return Arrays.asList(index);
+    }
+
+
+    /**
+     * 构建索引
+     * @return boolean
+     */
+    public boolean createIndex(String indexName, Client client) {
+        client.admin().indices().prepareCreate(indexName).execute().actionGet();
+        return true;
+    }
 
     /**
      * 根据文档名、字段名、字段值查询某一条记录的详细信息；query查询

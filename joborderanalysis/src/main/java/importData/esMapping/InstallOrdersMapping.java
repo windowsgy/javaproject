@@ -1,4 +1,4 @@
-package importData;
+package importData.esMapping;
 
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.client.Client;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
-class ES_Mapping {
+public class InstallOrdersMapping implements ES_Mapping {
 
     /**
      * 创建索引映射
@@ -18,7 +18,7 @@ class ES_Mapping {
      * @param client    es client
      */
 
-    static void buildIndexMap(String indexName, String typeName, Client client) {
+    public  void buildIndexMap(String indexName, String typeName, Client client) {
 
         PutMappingRequest mapping = Requests.putMappingRequest(indexName)
                 .type(typeName).source(getAccessOrdersMapping());

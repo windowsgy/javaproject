@@ -1,6 +1,8 @@
 import buildEnv.BuildEnv;
 import buildParams.Init;
-import crawler.GetHistoryOrders;
+import buildParams.Params;
+import crawler.getData.GetHistoryOrders;
+import crawler.getData.GetWebData;
 
 
 public class Start {
@@ -19,7 +21,10 @@ public class Start {
             return;
         }
         //运行爬虫采集
-        GetHistoryOrders.run();
+        GetWebData getWebData  = new GetHistoryOrders();
+        String startTime = "2019-02-01";
+        String endTime = "2019-02-01";
+        ((GetHistoryOrders) getWebData).getData(Params.url,Params.driverPath,Params.userName,Params.passWord,Params.webPath,startTime,endTime);
 
          /*
         if(!Params.loadLocalData){//如果不是加载本地数据则进行数据爬取模块

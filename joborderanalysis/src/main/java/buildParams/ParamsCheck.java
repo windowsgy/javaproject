@@ -17,9 +17,14 @@ public class ParamsCheck {
         //参数检查
         if (args.length == 0) {//当前时间
             Log.info("current time ");
+            BuildTimes.run();//构建时间参数
             return noParams();
         } else if (args.length == 1) { //输入日期获取工单 日/月
-            return oneParams(args);
+            if (oneParams(args[0])){
+                BuildTimes.run(args[0]);//构建时间参数
+            }
+
+            return true;
         }
      /*   else if (args.length == 2) {  //输入时间范围获取工单 日/月
             return twoParams(args);
@@ -46,16 +51,16 @@ public class ParamsCheck {
      * @param args 参数
      * @return boolean
      */
-    private static boolean oneParams(String[] args){
+    private static boolean oneParams(String arg){
         FileUtils fileUtils = new FileUtils();
-        if (fileUtils.isDir(args[0])){
-            Log.info("get local data path is : "+args[0]);
-            Params.sourcePath = args[0];//设定本地数据路径
+        if (fileUtils.isDir(arg)){
+            Log.info("get local data path is : "+arg);
+            Params.sourcePath = args;//设定本地数据路径
             Params.loadLocalData = true;//设定程序执行步骤为本地数据加载
-        }else if (args[0].length()==6){//如果参数格式为月
-            Log.info("get"+args[0]+" time orders");
-        }else if (args[0].length()==8){//如果参数格式为日
-            Log.info("get"+args[0]+" path data");
+        }else if (arg.length()==6){//如果参数格式为月
+            Log.info("get"+arg+" time orders");
+        }else if (arg.length()==8){//如果参数格式为日
+            Log.info("get"+arg+" path data");
         }else{
             Log.error("input params error");
             return false;

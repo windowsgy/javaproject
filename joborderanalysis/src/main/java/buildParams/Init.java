@@ -10,6 +10,7 @@ public class Init {
      *
      */
     public static boolean run(String [] args){
+
         Log.info("init");
         if(!ParamsCheck.run(args)){
             return false;

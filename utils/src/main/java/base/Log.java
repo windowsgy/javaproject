@@ -118,5 +118,14 @@ public class Log {
         }
     }
 
+    public static void  sleep(long timeLong) {
+        timeLong = timeLong * 1000;
+        try {
+            Thread.sleep(timeLong);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
