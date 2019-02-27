@@ -13,11 +13,30 @@ import java.util.List;
 
 public class GetHistoryOrders implements GetWebData {
 
+    private String url;
+    private String driverPath;
+    private String username;
+    private String password;
+    private String savePath;
+    private String startTime;
+    private String endTime;
+
+
+    GetHistoryOrders(String url,String driverPath,String username,String password ,String savePath,String startTime,String endTime){
+        this.url = url;
+        this.driverPath = driverPath;
+        this.username = username;
+        this.password = password;
+        this.savePath = savePath;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     /**
      * 爬取客调系统历史数据方法
      * @return boolean
      */
-    public boolean  getData(String url,String driverPath,String username,String password ,String savePath,String startTime,String endTime) {
+    public boolean  getData() {
 
         Browser browser = new IeBrowser(driverPath);//初始化浏览器
 
