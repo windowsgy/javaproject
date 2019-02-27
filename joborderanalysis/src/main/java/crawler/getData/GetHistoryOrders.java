@@ -18,25 +18,22 @@ public class GetHistoryOrders implements GetWebData {
     private String username;
     private String password;
     private String savePath;
-    private String startTime;
-    private String endTime;
 
 
-    GetHistoryOrders(String url,String driverPath,String username,String password ,String savePath,String startTime,String endTime){
+    public GetHistoryOrders(String url, String driverPath, String username, String password, String savePath){
         this.url = url;
         this.driverPath = driverPath;
         this.username = username;
         this.password = password;
         this.savePath = savePath;
-        this.startTime = startTime;
-        this.endTime = endTime;
+
     }
 
     /**
      * 爬取客调系统历史数据方法
      * @return boolean
      */
-    public boolean  getData() {
+    public boolean  getData(String startTime,String endTime) {
 
         Browser browser = new IeBrowser(driverPath);//初始化浏览器
 
