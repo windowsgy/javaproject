@@ -49,4 +49,5 @@ public class Params {
     public static String ordersClassPath ;
     public static String addFieldsClassPath;
     public static String esMappingClassPath;
+    public static String webClassPath;
 }

@@ -57,6 +57,7 @@ public class BuildParams {
         Params.addFieldsClassPath = "etl.addFields."+Params.dataType;
         Params.ordersClassPath = "etl.orders."+Params.dataType;
         Params.esMappingClassPath = "db.es."+Params.dataType;
+        Params.webClassPath = "web.get."+Params.dataType;
         return true;
     }
 }

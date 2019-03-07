@@ -1,6 +1,6 @@
 import base.Log;
 import db.ImportData;
-import web.Crawler;
+import web.GetWeb;
 import etl.ETL;
 import init.Init;
 import init.Params;
@@ -22,7 +22,7 @@ public class Start {
         Log.info("runTime :"+Params.runTime);
 
         if (!Params.loadLocalData) {
-            if (!Crawler.run()) {
+            if (!GetWeb.run()) {
                 return;
             }
         }
