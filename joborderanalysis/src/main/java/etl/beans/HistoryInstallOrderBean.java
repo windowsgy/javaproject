@@ -47,7 +47,7 @@ public class HistoryInstallOrderBean implements OrderBean  {
     private	String	partnerNumber	;//	43	合作方编码
     private	String	partnerName	;//	44	合作方名称
     private	String	partnerId	;//	45	合作方标识
-    private	String	executeTimeLong	;//	46	自然施工时长
+    private	double	executeTimeLong	;//	46	自然施工时长
     private	String	causeUp	;//	47	挂起原因
     private	String	causeFeedback	;//	48	反馈原因
     private	boolean	theDayDefer	;//	49	当日装慢必赔
@@ -423,11 +423,11 @@ public class HistoryInstallOrderBean implements OrderBean  {
         this.partnerId = partnerId;
     }
 
-    public String getExecuteTimeLong() {
+    public double getExecuteTimeLong() {
         return executeTimeLong;
     }
 
-    public void setExecuteTimeLong(String executeTimeLong) {
+    public void setExecuteTimeLong(double executeTimeLong) {
         this.executeTimeLong = executeTimeLong;
     }
 

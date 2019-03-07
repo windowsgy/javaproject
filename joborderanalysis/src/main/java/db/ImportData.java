@@ -15,7 +15,7 @@ public class ImportData {
     /**
      * 导入数据
      */
-    public static void run(Map<String, List<String>> map) {
+    public static boolean run(Map<String, List<String>> map) {
         for (String key : map.keySet()) {
             List<String> list = map.get(key);
             TranslationUtils jsonUtils = new TranslationUtils();
@@ -30,7 +30,7 @@ public class ImportData {
             if (!listIndex.contains(Params.es_index_name)) {//如果索引不存在
                 Log.info("create index");
                 if (!es_utils.createIndex(Params.es_index_name, client)) {
-                    return;
+                    return false;
                 }
                 Log.info("build index mapping");
                 try {
@@ -45,5 +45,6 @@ public class ImportData {
             client.close();
 
         }
+        return true;
     }
 }

@@ -124,7 +124,7 @@ public class HistoryInstallOrders extends AbsOrders implements Orders {
             pojo.setPartnerNumber(line.get(42));
             pojo.setPartnerName(line.get(43));
             pojo.setPartnerId(line.get(44));
-            pojo.setExecuteTimeLong(line.get(45));
+            pojo.setExecuteTimeLong(SetFields.toDouble(line.get(45)));
             pojo.setCauseUp(line.get(46));
             pojo.setCauseFeedback(line.get(47));
             pojo.setTheDayDefer(SetFields.yesOrNo(line.get(48)));

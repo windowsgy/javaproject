@@ -20,8 +20,8 @@ object BigDataMain {
     val filesPath =paramsMap.get("sourcePath")
     val filesName = filesUtils.getFilesName(filesPath)
     Log.debug("fileCount :"+filesName.size())
-    val sc = InitSpark.getContext;
-    Compute.runAccessOrders(sc)
+    val sc = InitSpark.getSession
+    Compute.runHistoryInstallOrdersJson(sc)
 
   }
 }

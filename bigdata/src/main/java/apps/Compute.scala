@@ -18,18 +18,24 @@ object Compute {
     Log.info(rddCount.count())
   }
 
-  def runAccessOrdersJson(sc: SparkSession): Unit = {
+  def runHistoryInstallOrdersJson(sc: SparkSession): Unit = {
     Log.info("Compute")
     val path = paramsMap.get("sourcePath")+"*"
     Log.info("load source filePath :"+path)
     val rdd: DataFrame = sc.read.json(path)
     rdd.printSchema();
     rdd.take(10).foreach { println }
+    rdd.groupBy("executor", "executeType","product")
+      .agg("count"->"sum","executeTimeLong"->"avg","orderDisposeTimeLong"->"avg","orderTimeLong"->"avg")
+      .orderBy("executor","executeType","product")
+      .show(100)
+
+
   }
 
 
 
-  def runAccessOrders(sc: SparkContext): Unit = {
+  def runHistoryInstallOrders(sc: SparkContext): Unit = {
     Log.info("Compute")
     val path = paramsMap.get("sourcePath")+"*"
     Log.info("load source filePath :"+path)

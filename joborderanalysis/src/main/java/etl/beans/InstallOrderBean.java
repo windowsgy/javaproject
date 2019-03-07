@@ -460,6 +460,7 @@ public class InstallOrderBean implements OrderBean {
         return count;
     }
 
+    @Override
     public void setCount(int count) {
         this.count = count;
     }
@@ -476,6 +477,7 @@ public class InstallOrderBean implements OrderBean {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -484,6 +486,7 @@ public class InstallOrderBean implements OrderBean {
         return importTime;
     }
 
+    @Override
     public void setImportTime(String importTime) {
         this.importTime = importTime;
     }
@@ -492,6 +495,7 @@ public class InstallOrderBean implements OrderBean {
         return importFile;
     }
 
+    @Override
     public void setImportFile(String importFile) {
         this.importFile = importFile;
     }
