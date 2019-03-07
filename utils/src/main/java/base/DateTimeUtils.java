@@ -31,8 +31,8 @@ public class DateTimeUtils {
      *
      * @return 日期字段
      */
-    public  String getCurTimeMI() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:00");
+    public  String getCurTimeMI(String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Calendar cal = Calendar.getInstance();// 取当前日期。
         return format.format(cal.getTime());
     }
@@ -43,8 +43,8 @@ public class DateTimeUtils {
      *
      * @return 日期字段
      */
-    public  String getBeforeOneMI(int n) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:00");
+    public  String getBeforeOneMI(int n,String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Calendar cal = Calendar.getInstance();// 取当前日期。
         cal.add(Calendar.MINUTE, -n);// 取当前时间的前n分钟.
         return format.format(cal.getTime());
@@ -55,8 +55,8 @@ public class DateTimeUtils {
      *
      * @return 日期字段
      */
-    public  String getBeforeOneHour() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:00:00");
+    public  String getBeforeOneHour(String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.HOUR_OF_DAY, -1);// 取当前日期的前一小时.
         return format.format(cal.getTime());
@@ -67,8 +67,8 @@ public class DateTimeUtils {
      *
      * @return 日期字段
      */
-    public  String getBeforeOneDay() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+    public  String getBeforeOneDay(String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Calendar cal = Calendar.getInstance();// 取当前日期。
         cal.add(Calendar.DAY_OF_MONTH, -1);// 取当前日期的前一天.
         return format.format(cal.getTime());
@@ -81,8 +81,8 @@ public class DateTimeUtils {
      * @param n       时间差
      * @return 计算后时间
      */
-    private  String computeTimeMi(String timeStr, int n) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+    private  String computeTimeMi(String timeStr, int n,String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Date date = null;
         try {
             date = format.parse(timeStr);
@@ -95,9 +95,15 @@ public class DateTimeUtils {
         return format.format(calendar.getTime());
     }
 
-
-    public  String computeTimeHH(String timeStr, int n) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+    /**
+     * 分钟时间减 ，计算给定时间格式之前N小时
+     *
+     * @param timeStr 时间格式字符串
+     * @param n       时间差
+     * @return 计算后时间
+     */
+    public  String computeTimeHH(String timeStr, int n,String dateTimeFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateTimeFormat);
         Date date = null;
         try {
             date = format.parse(timeStr);
@@ -110,6 +116,7 @@ public class DateTimeUtils {
         return format.format(calendar.getTime());
     }
 
+
     /**
      * 计算起止时间差
      *
@@ -117,8 +124,8 @@ public class DateTimeUtils {
      * @param endTime   结束时间
      * @return 时间差 单位秒
      */
-    public  Long timeDifference(String startTime, String endTime) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public  Long timeDifference(String startTime, String endTime,String dateTimeFormat) {
+        DateFormat df = new SimpleDateFormat( dateTimeFormat);
         try {
             Date d1 = df.parse(endTime);
             Date d2 = df.parse(startTime);
@@ -138,8 +145,8 @@ public class DateTimeUtils {
      * @param dateFormat 时间格式
      * @return boolean
      */
-    public  boolean dtFormatCheck(String dateTime, String dateFormat) {
-        SimpleDateFormat format = new SimpleDateFormat(dateFormat);// 设置日期转化成功标识
+    public  boolean dtCheck(String dateTime, String dateFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         try {
             format.parse(dateTime);
             return true;
@@ -197,12 +204,12 @@ public class DateTimeUtils {
      * @param endTimeStr   结束时间
      * @return 返回时间戳List 单位 分钟
      */
-    public  List<String> timeList(String startTimeStr, String endTimeStr) {
+    public  List<String> timeList(String startTimeStr, String endTimeStr,String dataTimeFormat) {
         List<String> timeList = new ArrayList<String>();
-        Long timeDiffMi = timeDifference(startTimeStr, endTimeStr) / 60;//时间差 转换为秒
+        Long timeDiffMi = timeDifference(startTimeStr, endTimeStr, dataTimeFormat) / 60;//时间差 转换为秒
         int timeDiff = new Long(timeDiffMi).intValue();//Long To Int
         for (int i = 0; i < timeDiff; i++) {
-            String timeStr =computeTimeMi(endTimeStr, i);
+            String timeStr =computeTimeMi(endTimeStr, i, dataTimeFormat);
             timeList.add(timeStr);
         }
         return timeList;

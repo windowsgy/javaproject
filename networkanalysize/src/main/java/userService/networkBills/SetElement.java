@@ -31,7 +31,7 @@ public class SetElement {
 
         for (String fileName : filesName) {
             String filePath = filesPath + fileName;
-            List<String> fileList = fileUtils.read2List(filePath, 0, "GBK");
+            List<String> fileList = fileUtils.read2List(filePath, 0);
             //创建结构体
             Stru_Bill stru = new Stru_Bill();
             String id = fileName.substring(0, fileName.lastIndexOf("."));

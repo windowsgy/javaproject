@@ -53,9 +53,8 @@ public class ListUtils {
     }
 
     /**
-     * List 按分隔符拆分为  行、列 字段模式
-     *
-     * @param list      List
+     * list<String> 转换 List<List<String>>>
+     * @param list List
      * @param splitChar 分隔符
      * @return 行、列 列表
      */
@@ -76,6 +75,25 @@ public class ListUtils {
                 Log.error(lineCount + " :Line Error , Current Line Split Lenght : " + lists);
                 return null;
             }
+        }
+        return theList;
+    }
+
+    /**
+     * List<List<String>>> 转换 list<String>
+     * @param list List
+     * @param splintChar 分隔符
+     * @return 行、列 列表
+     */
+    public List<String> listFields2List(List<List<String>> list,String splintChar){
+        List<String> theList = new ArrayList<>();
+        for (List<String> subList : list) {
+            StringBuilder sb = new StringBuilder();
+            for(String field : subList){
+                sb.append(field+splintChar);
+            }
+            sb.append("\r\n");
+            theList.add(sb.toString());
         }
         return theList;
     }

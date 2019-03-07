@@ -1,45 +1,40 @@
-import buildEnv.BuildEnv;
-import buildParams.Init;
-import buildParams.Params;
-import crawler.getData.GetHistoryOrders;
-import crawler.getData.GetWebData;
+import base.Log;
+import db.ImportData;
+import web.Crawler;
+import etl.ETL;
+import init.Init;
+import init.Params;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class Start {
 
     /**
-     *
      * @param args 输入参数
      */
     public static void run(String[] args) {
-        //参数初始化
-        if (!Init.run(args)) {//如果加载失败返回
+
+        if (!Init.run(args)) {
             return;
         }
-        //创建环境
-        if (!BuildEnv.run()) {
+        Log.info("runTime :"+Params.runTime);
+
+        if (!Params.loadLocalData) {
+            if (!Crawler.run()) {
+                return;
+            }
+        }
+
+
+        Map<String, List<String>> map = ETL.run();
+
+        if (null == map) {
             return;
         }
-        //运行爬虫采集
-        GetWebData getWebData  = new GetHistoryOrders(Params.url,Params.driverPath,Params.userName,Params.passWord,Params.webPath);
-        String startTime = "2019-02-01";
-        String endTime = "2019-02-01";
-        ((GetHistoryOrders) getWebData).getData(startTime,endTime);
 
-         /*
-        if(!Params.loadLocalData){//如果不是加载本地数据则进行数据爬取模块
-            AutoWeb.run();
+        ImportData.run(map);
 
-        }
-       //ETL导入数据
-        FileUtils fileUtils = new FileUtils();
-        List<String> fileList = fileUtils.getFilesName(Params.sourcePath);
-        for (String aFileList : fileList) {
-            String sourcePath = Params.sourcePath + aFileList;
-            String formatPath = Params.formatPath + aFileList;
-            String jsonPath = Params.jsonPath + aFileList;
-            List<String> listJson = Etl.run(sourcePath, formatPath,jsonPath);
-         // ImportData.run(listJson);
-        }*/
     }
 }
