@@ -4,13 +4,15 @@ import base.FileUtils;
 import base.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import web.browsers.Browser;
-import web.browsers.IeBrowser;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * 查询历史工单实现方法
+ */
 
 public class HistoryInstallOrders extends DispatchSystem implements WebSystem {
 

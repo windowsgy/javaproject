@@ -34,7 +34,7 @@ public class ImportData {
                 }
                 Log.info("build index mapping");
                 try {
-                    ES_Mapping es_mapping = (ES_Mapping) Class.forName(Params.ordersClassPath).newInstance();
+                    ES_Mapping es_mapping = (ES_Mapping) Class.forName(Params.esMappingClassPath).newInstance();
                     es_mapping.buildIndexMap(Params.es_index_name, Params.es_index_type, client);
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     e.printStackTrace();

@@ -29,7 +29,7 @@ abstract class AbsOrders implements Orders {
     /**
      * 加载导出数据方法
      */
-    public List<List<String>> loadExcelData(String filePath) {
+    List<List<String>> loadExcelData(String filePath) {
         File xlsFile = new File(filePath);
         ExcelUtils excelUtils = new ExcelUtils();
         Workbook wb = null;
@@ -38,8 +38,7 @@ abstract class AbsOrders implements Orders {
         } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
-        List<List<String>> list = excelUtils.sheetToList(wb, 0);
-        return list;
+        return excelUtils.sheetToList(wb, 0);
     }
 
     /**
@@ -49,7 +48,7 @@ abstract class AbsOrders implements Orders {
      * @param isolationChar isolationChar
      * @return List<String>
      */
-    public List<String> excelToList(List<List<String>> list, String isolationChar) {
+    List<String> excelToList(List<List<String>> list, String isolationChar) {
         ListUtils listUtils = new ListUtils();
         return listUtils.listFields2List(list, isolationChar);
     }
@@ -82,21 +81,4 @@ abstract class AbsOrders implements Orders {
         ListUtils listUtils = new ListUtils();
         return listUtils.list2ListFields(list, isolationChar);
     }
-
-
-    <T extends OrderBean> void set(List<T> list, String filePath) {
-        for (T order : list) {
-            String id = order.getOrderNum() + "_" + order.toString().hashCode();
-            order.setId(id);
-            //统计值
-            order.setCount(1);
-            String timesTamp = order.getAcceptTime().replace(" ", "T");
-            timesTamp = timesTamp + ":00.000Z";
-            order.setTimesTamp(timesTamp);
-            order.setImportTime(Params.runTime);
-            order.setImportFile(filePath);
-        }
-    }
-
-
 }

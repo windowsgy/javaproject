@@ -13,12 +13,12 @@ public class InputCheck {
     public static boolean run(String[] args) {
 
         if (1 == args.length) {//单参数判断
-            if (!DataTypeEnum.in(args[0])) {
+            if (DataTypeEnum.include(args[0])) {
                 Log.error("输入数据类型错误");
                 return false;
             }
         } else if (2 == args.length) {//两个参数判断
-            if (!DataTypeEnum.in(args[0])) {
+            if (DataTypeEnum.include(args[0])) {
                 Log.error("输入数据类型错误");
                 return false;
             }

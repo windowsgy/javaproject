@@ -1,10 +1,16 @@
-package web.browsers;
+package web.get;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+
+/**
+ * IE浏览器接口
+ */
 public  class IeBrowser implements Browser {
+    private WebDriver bro;
+    private JavascriptExecutor broJs;
 
     public WebDriver getBro() {
         return bro;
@@ -14,10 +20,8 @@ public  class IeBrowser implements Browser {
         return broJs;
     }
 
-    private WebDriver bro;
-    private JavascriptExecutor broJs;
 
-    public IeBrowser(String driverPath){
+    IeBrowser(String driverPath){
         try {
             System.setProperty("webdriver.ie.driver", driverPath);
             bro = new InternetExplorerDriver();

@@ -3,7 +3,8 @@ package init;
 public enum DataTypeEnum {
 
     InstallOrders(0,"InstallOrders"),
-    HistoryInstallOrders(1,"HistoryInstallOrders");
+    HistoryInstallOrders(1,"HistoryInstallOrders"),
+    HistoryFailureOrders(2,"HistoryFailureOrders");
 
     private final int id;
     private final String value;
@@ -21,13 +22,13 @@ public enum DataTypeEnum {
         this.value = value;
     }
 
-    public static boolean in (String str){
+    public static boolean include(String str){
         for (DataTypeEnum c : DataTypeEnum.values()) {//循环判断
             if (c.name().equals(str)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 }

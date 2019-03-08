@@ -60,6 +60,35 @@ public class HistoryInstallOrderBean implements OrderBean  {
     private String id;
     private String importTime;
     private String importFile;
+    private String standAddL6;
+    private String year;
+    private String month;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+
+    public String getStandAddL6() {
+        return standAddL6;
+    }
+
+    public void setStandAddL6(String standAddL6) {
+        this.standAddL6 = standAddL6;
+    }
+
 
     public String getProduct() {
         return product;

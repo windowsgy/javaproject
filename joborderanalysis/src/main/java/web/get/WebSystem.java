@@ -1,7 +1,8 @@
 package web.get;
 
-import web.browsers.Browser;
-
+/**
+ * WEB系统接口
+ */
 public interface WebSystem {
     boolean login(Browser browser , String url, String username, String password);
     void setUrl(String url);

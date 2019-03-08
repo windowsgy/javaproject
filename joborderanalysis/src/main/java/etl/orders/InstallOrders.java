@@ -50,7 +50,8 @@ public class InstallOrders extends AbsOrders implements Orders {
     }
 
     @Override
-    public void excelToList(){}
+    public void excelToList() {
+    }
 
     @Override
     public void toList() {
@@ -212,7 +213,17 @@ public class InstallOrders extends AbsOrders implements Orders {
 
     @Override
     public void set() {
-       super.set(beansList,filePath);
+        for (InstallOrderBean order : beansList) {
+            String id = order.getOrderNum() + "_" + order.toString().hashCode();
+            order.setId(id);
+            //统计值
+            order.setCount(1);
+            String timesTamp = order.getAcceptTime().replace(" ", "T");
+            timesTamp = timesTamp + ":00.000Z";
+            order.setTimesTamp(timesTamp);
+            order.setImportTime(Params.runTime);
+            order.setImportFile(filePath);
+        }
     }
 
     @Override
