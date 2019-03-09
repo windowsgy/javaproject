@@ -16,13 +16,14 @@ public class ETL {
     public static Map<String, List<String>> run() {
         Map<String,List<String>> map = new HashMap<>();
         FileUtils fileUtils = new FileUtils();
-        ListUtils listUtils = new ListUtils();
         List<String> filesNameList = fileUtils.getFilesName(Params.sourcePath);
         for (String fileName : filesNameList) {
             String filePath = Params.sourcePath + fileName;
+            String jsonPath = Params.jsonPath + fileName;
             try {
                 Orders orders = (Orders) Class.forName(Params.ordersClassPath).newInstance();
                 orders.setFilePath(filePath);
+                orders.setJsonPath(jsonPath);
                 orders.setSplitChar(Params.splitChar);
                 orders.setIsolationChar(Params.isolationChar);
                 if ("Excel".equals(Params.fileFormat)) {
@@ -38,20 +39,18 @@ public class ETL {
                 }
                 Log.info("filter");
                 orders.filter();
-                Log.info("attribute add");
+                Log.info("addFields");
                 orders.add();
                 Log.info("toFieldsList");
                 orders.toFieldsList();
-                Log.info("bean");
+                Log.info("toBean");
                 orders.toBean();
                 Log.info("set");
                 orders.set();
                 Log.info("toJson");
                 orders.toJson();
-                String json = listUtils.list2String(orders.getList());
-                String jsonPath = Params.jsonPath+fileName;
-                fileUtils.createFile(jsonPath);
-                fileUtils.wrStr2File(json,jsonPath);
+                Log.info("write to File");
+                orders.wrToFile();
                 map.put(fileName, orders.getList());
             } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
                 e.printStackTrace();

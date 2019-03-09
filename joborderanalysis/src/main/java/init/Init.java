@@ -20,7 +20,7 @@ public class Init {
         }
         //input params check
         Log.info("input params check");
-        if(!InputCheck.run(args)){
+        if(!InputParamsCheck.run(args)){
             Log.error("input params error");
             return false;
         }

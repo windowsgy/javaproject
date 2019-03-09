@@ -8,7 +8,7 @@ import base.Log;
 /**
  * 输入参数检查
  */
-public class InputCheck {
+public class InputParamsCheck {
 
     public static boolean run(String[] args) {
 

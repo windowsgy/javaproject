@@ -2,7 +2,6 @@ package etl.orders;
 
 import base.FileUtils;
 import etl.beans.InstallOrderBean;
-import etl.addFields.AddFields;
 import init.Params;
 
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 public class InstallOrders extends AbsOrders implements Orders {
 
     private String filePath;
+    private String jsonPath;
     private String splitChar;
     private String isolationChar;
     private List<String> list;
@@ -26,6 +26,10 @@ public class InstallOrders extends AbsOrders implements Orders {
     @Override
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public void setJsonPath(String jsonPath){
+        this.jsonPath = jsonPath;
     }
 
     @Override
@@ -104,9 +108,8 @@ public class InstallOrders extends AbsOrders implements Orders {
 
     @Override
     public void add() {
-        AddFields addFields = new etl.addFields.InstallOrders();
-        String addStr = addFields.run(filePath);
-        super.add(list, addStr);
+        String str = Params.runTime + "||" + filePath;
+        super.add(list,str);
     }
 
     @Override
@@ -246,5 +249,10 @@ public class InstallOrders extends AbsOrders implements Orders {
     @Override
     public void toFieldsList() {
         fieldList = super.toFieldsList(list, splitChar);
+    }
+
+    @Override
+    public void wrToFile(){
+        super.wrToFile(list,jsonPath);
     }
 }

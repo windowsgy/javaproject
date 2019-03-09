@@ -2,6 +2,7 @@ package init;
 
 import base.FileUtils;
 import base.Log;
+import init.Params;
 
 public class BuildEnv {
 

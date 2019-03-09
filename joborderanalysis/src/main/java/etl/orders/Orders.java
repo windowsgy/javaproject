@@ -5,6 +5,10 @@ import java.util.List;
 public interface Orders{
 
 
+    /**
+     * 获取List<String>格式数据
+     * @return List
+     */
     List<String> getList() ;
 
     /**
@@ -21,6 +25,12 @@ public interface Orders{
      * 设置分隔字符
      */
     void setIsolationChar(String isolationChar) ;
+
+    /**
+     * 设置json文件路径
+     * @param jsonPath 文件路径
+     */
+    void setJsonPath(String jsonPath);
 
     /**
      * 加载爬虫数据方法
@@ -72,5 +82,9 @@ public interface Orders{
      */
     void toJson();
 
+    /**
+     * 写入文件方法
+     */
+    void wrToFile();
 
 }

@@ -4,8 +4,6 @@ import base.ExcelUtils;
 import base.FileUtils;
 import base.ListUtils;
 import base.TranslationUtils;
-import etl.beans.OrderBean;
-import init.Params;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -77,8 +75,27 @@ abstract class AbsOrders implements Orders {
         return listJson;
     }
 
+    /**
+     * List<String> to List<List<String>>
+     * @param list list
+     * @param isolationChar 分隔符
+     * @return List<List<String>>
+     */
     List<List<String>> toFieldsList(List<String> list, String isolationChar) {
         ListUtils listUtils = new ListUtils();
         return listUtils.list2ListFields(list, isolationChar);
+    }
+
+    /**
+     * List<String>写入文件方法
+     * @param list liist<String>
+     * @param filePath filePath
+     */
+     void wrToFile(List<String> list,String filePath) {
+        ListUtils listUtils = new ListUtils();
+        FileUtils fileUtils = new FileUtils();
+        String json = listUtils.list2String(list);
+        fileUtils.createFile(filePath);
+        fileUtils.wrStr2File(json,filePath);
     }
 }

@@ -17,7 +17,7 @@ public class StringUtils {
      * @param str string
      * @return boolean
      */
-    public boolean isNumeric(String str) {
+    private boolean isNumeric(String str) {
         boolean isInt = isFormat(str, Regex.REGEX_INT);
         boolean isDouble = isFormat(str, Regex.REGEX_DOUBLE);
         return isInt || isDouble;
@@ -103,20 +103,14 @@ public class StringUtils {
     public String getNumbers(String content) {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(content);
-        while (matcher.find()) {
-            return matcher.group(0);
-        }
-        return "";
+        return matcher.group(0);
     }
 
     // 截取非数字
     public String splitNotNumber(String content) {
         Pattern pattern = Pattern.compile("\\D+");
         Matcher matcher = pattern.matcher(content);
-        while (matcher.find()) {
-            return matcher.group(0);
-        }
-        return "";
+        return matcher.group(0);
     }
 
     // 判断一个字符串是否含有数字
@@ -165,11 +159,12 @@ public class StringUtils {
 
     /**
      * 判断字符串中第一个字母或数字的位置
+     *
      * @param str 字符串
      * @return index
      */
-    public int indexForLetterOrDigit(String str){
-        for(int i=0 ; i<str.length() ; i++) { //循环遍历字符串
+    public int indexForLetterOrDigit(String str) {
+        for (int i = 0; i < str.length(); i++) { //循环遍历字符串
             if (Character.isDigit(str.charAt(i))) {     //用char包装类中的判断数字的方法判断每一个字符
                 return i;
             }
@@ -178,6 +173,30 @@ public class StringUtils {
             }
         }
         return 0;
+    }
+
+    /**
+     * 根据是否返回boolean
+     *
+     * @param string 字段
+     * @return boolean
+     */
+    public boolean yesOrNo(String string) {
+        return !string.contains("否");
+    }
+
+    /**
+     * 根据字符串返回数值
+     *
+     * @param string 字符串
+     * @return 数值
+     */
+    public double toDouble(String string) {
+        StringUtils stringUtils = new StringUtils();
+        if (stringUtils.isNumeric(string)) {
+            return Double.parseDouble(string);
+        } else return 0.0;
+
     }
 
 }
