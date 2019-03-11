@@ -132,9 +132,9 @@ public class HistoryInstallOrders extends AbsOrders implements Orders {
             pojo.setExecuteTimeLong(stringUtils.toDouble(line.get(45)));
             pojo.setCauseUp(line.get(46));
             pojo.setCauseFeedback(line.get(47));
-            pojo.setTheDayDefer(stringUtils.yesOrNo(line.get(48)));
+            pojo.setTheDayDefer(line.get(48));
             pojo.setFileType(line.get(49));
-            pojo.setTheDay(stringUtils.yesOrNo(line.get(50)));
+            pojo.setTheDay(line.get(50));
             beansList.add(pojo);
         }
     }
@@ -159,7 +159,14 @@ public class HistoryInstallOrders extends AbsOrders implements Orders {
             order.setMonth(order.getAcceptTime().split("-")[1]);
             //标准L6地址
             String standAdd = order.getStandAdd();
-            String standAddL6 = standAdd.substring(0, stringUtils.indexForLetterOrDigit(standAdd));
+
+            int i  ;//L6地址索引
+            if(standAdd.contains("小区")){
+                i = standAdd.indexOf("小区")+2;
+            }else {
+                i = stringUtils.indexForLetterOrDigit(standAdd);
+            }
+            String standAddL6 = standAdd.substring(0, i);
             order.setStandAddL6(standAddL6);
         }
     }

@@ -1,5 +1,6 @@
 package base;
 
+import java.sql.SQLOutput;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -165,25 +166,17 @@ public class StringUtils {
      */
     public int indexForLetterOrDigit(String str) {
         for (int i = 0; i < str.length(); i++) { //循环遍历字符串
-            if (Character.isDigit(str.charAt(i))) {     //用char包装类中的判断数字的方法判断每一个字符
+            if (str.charAt(i)>=48 && str.charAt(i)<=57) {     //用判断数字的方法判断每一个字符
                 return i;
             }
-            if (Character.isLetter(str.charAt(i))) {   //用char包装类中的判断字母的方法判断每一个字符
+            char c = str.charAt(i);
+            if ((c<='z'&&c>='a')||(c<='Z'&&c>='A')) {   //判断字母的方法判断每一个字符
                 return i;
             }
         }
         return 0;
     }
 
-    /**
-     * 根据是否返回boolean
-     *
-     * @param string 字段
-     * @return boolean
-     */
-    public boolean yesOrNo(String string) {
-        return !string.contains("否");
-    }
 
     /**
      * 根据字符串返回数值

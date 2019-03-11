@@ -50,9 +50,26 @@ public class HistoryInstallOrderBean implements OrderBean  {
     private	double	executeTimeLong	;//	46	自然施工时长
     private	String	causeUp	;//	47	挂起原因
     private	String	causeFeedback	;//	48	反馈原因
-    private	boolean	theDayDefer	;//	49	当日装慢必赔
+
+    public String getTheDayDefer() {
+        return theDayDefer;
+    }
+
+    public void setTheDayDefer(String theDayDefer) {
+        this.theDayDefer = theDayDefer;
+    }
+
+    public String getTheDay() {
+        return theDay;
+    }
+
+    public void setTheDay(String theDay) {
+        this.theDay = theDay;
+    }
+
+    private	String	theDayDefer	;//	49	当日装慢必赔
     private	String	fileType	;//	50	归档模式
-    private	boolean	theDay	;//	51	当日装履约标识
+    private	String	theDay	;//	51	当日装履约标识
     //升维字段================================================
 
     private int count;
@@ -476,14 +493,6 @@ public class HistoryInstallOrderBean implements OrderBean  {
         this.causeFeedback = causeFeedback;
     }
 
-    public boolean isTheDayDefer() {
-        return theDayDefer;
-    }
-
-    public void setTheDayDefer(boolean theDayDefer) {
-        this.theDayDefer = theDayDefer;
-    }
-
     public String getFileType() {
         return fileType;
     }
@@ -492,13 +501,6 @@ public class HistoryInstallOrderBean implements OrderBean  {
         this.fileType = fileType;
     }
 
-    public boolean isTheDay() {
-        return theDay;
-    }
-
-    public void setTheDay(boolean theDay) {
-        this.theDay = theDay;
-    }
 
     public int getCount() {
         return count;

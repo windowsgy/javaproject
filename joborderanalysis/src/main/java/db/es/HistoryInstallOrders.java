@@ -44,8 +44,6 @@ public class HistoryInstallOrders implements ES_Mapping {
                     .startObject("accessNum").field("type", "keyword").endObject()
                     .startObject("speed").field("type", "keyword").endObject()
                     .startObject("salesman").field("type", "keyword").endObject()
-                    .startObject("address").field("type", "keyword").endObject()
-                    .startObject("standAdd").field("type", "keyword").endObject()
                     .startObject("area").field("type", "keyword").endObject()
                     .startObject("clientName").field("type", "keyword").endObject()
                     .startObject("linkMan").field("type", "keyword").endObject()
@@ -82,7 +80,10 @@ public class HistoryInstallOrders implements ES_Mapping {
                     .startObject("partnerId").field("type", "keyword").endObject()
                     .startObject("causeUp").field("type", "keyword").endObject()
                     .startObject("causeFeedback").field("type", "keyword").endObject()
+                    .startObject("theDayDefer").field("type", "keyword").endObject()
                     .startObject("fileType").field("type", "keyword").endObject()
+                    .startObject("theDay").field("type", "keyword").endObject()
+                    .startObject("standAddL6").field("type", "keyword").endObject()
                     .endObject().endObject();
 
         } catch (IOException e) {
