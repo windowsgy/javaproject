@@ -1,8 +1,10 @@
 package etl.orders;
 
+import etl.beans.OrderBean;
+
 import java.util.List;
 
-public interface Orders{
+public interface Orders<T>{
 
 
     /**
@@ -10,6 +12,12 @@ public interface Orders{
      * @return List
      */
     List<String> getList() ;
+
+    /**
+     * 获取List<List<String>>格式数据
+     * @return List
+     */
+    List<List<String>> getFieldList();
 
     /**
      * 设置路径

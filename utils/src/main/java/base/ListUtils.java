@@ -90,7 +90,8 @@ public class ListUtils {
         for (List<String> subList : list) {
             StringBuilder sb = new StringBuilder();
             for(String field : subList){
-                sb.append(field+splintChar);
+                sb.append(field);
+                sb.append(splintChar);
             }
             sb.append("\r\n");
             theList.add(sb.toString());

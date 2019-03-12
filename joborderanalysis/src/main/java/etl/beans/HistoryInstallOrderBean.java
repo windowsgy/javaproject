@@ -2,76 +2,60 @@ package etl.beans;
 
 public class HistoryInstallOrderBean implements OrderBean  {
 
-    private	String	product	;//	1	产品
-    private	String	includeOrderNum	;//	2	所属工单
-    private	String	network	;//	3	本地网
-    private	String	orderNum	;//	4	订单编号
-    private	String	accessNum	;//	5	接入号
-    private	String	speed	;//	6	宽带速率
-    private	String	salesman	;//	7	客户经理
-    private	double	orderDisposeTimeLong	;//	8	工单处理时长
-    private	String	address	;//	9	装机地址
-    private	String	standAdd	;//	10	标准地址
-    private	String	area	;//	11	区域
-    private	String	clientName	;//	12	客户名称
-    private	String	linkMan	;//	13	联系人
-    private	String	linkPhoneNum	;//	14	联系电话
-    private	String	commodityName	;//	15	商品名称
-    private	String	executeType	;//	16	施工类型
-    private	String	executeAction	;//	17	施工动作
-    private	String	isPrint	;//	18	是否打印
-    private	String	remark	;//	19	备注
-    private	String	programCtl	;//	20	程控功能
-    private	String	status	;//	21	状态
-    private	String	priority	;//	22	优先级
-    private	String	executor	;//	23	施工人
-    private	String	executeDepartment 	;//	24	施工部门
-    private	String	upTime	;//	25	挂起时间
-    private	String	feedbackTime	;//	26	反馈时间
-    private	String	reservationStartTime	;//	27	预约开始时间
-    private	String	reservationEndTime	;//	28	预约结束时间
-    private	String	reservationWarnTime	;//	29	预约预警时间
-    private	String	taskEndTime	;//	30	截止时间
-    private	String	acceptTime	;//	31	受理时间
-    private	String	channelName	;//	32	渠道名称
-    private	String	arriveTime	;//	33	到单时间
-    private	String	completedTime	;//	34	竣工时间
-    private	String	isOverTime	;//	35	是否超时
-    private	double	orderTimeLong	;//	36	工单历时
-    private	String	lanPort	;//	37	楼道交换机端口
-    private	String	eponPort	;//	38	EPON端口
-    private	String	onuPort	;//	39	ONU设备名称及端口
-    private	String	odnPort	;//	40	分光器端口
-    private	String	odnName	;//	41	分光器名称
-    private	String	vindicatePattern	;//	42	维护模式
-    private	String	partnerNumber	;//	43	合作方编码
-    private	String	partnerName	;//	44	合作方名称
-    private	String	partnerId	;//	45	合作方标识
-    private	double	executeTimeLong	;//	46	自然施工时长
-    private	String	causeUp	;//	47	挂起原因
-    private	String	causeFeedback	;//	48	反馈原因
-
-    public String getTheDayDefer() {
-        return theDayDefer;
-    }
-
-    public void setTheDayDefer(String theDayDefer) {
-        this.theDayDefer = theDayDefer;
-    }
-
-    public String getTheDay() {
-        return theDay;
-    }
-
-    public void setTheDay(String theDay) {
-        this.theDay = theDay;
-    }
-
-    private	String	theDayDefer	;//	49	当日装慢必赔
-    private	String	fileType	;//	50	归档模式
-    private	String	theDay	;//	51	当日装履约标识
+    private String product;                                //1产品
+    private String includeOrderNum;                                //2所属工单
+    private String network;                                //3本地网
+    private String orderNum;                                //4订单编号
+    private String accessNum;                                //5接入号
+    private String speed;                                //6宽带速率
+    private String salesman;                                //7客户经理
+    private double orderDisposeTimeLong;                                //8工单处理时长
+    private String area;                                //9区域
+    private String clientName;                                //10客户名称
+    private String linkMan;                                //11联系人
+    private String linkPhoneNum;                                //12联系电话
+    private String commodityName;                                //13商品名称
+    private String executeType;                                //14施工类型
+    private String executeAction;                                //15施工动作
+    private String isPrint;                                //16是否打印
+    private String remark;                                //17备注
+    private String programCtl;                                //18程控功能
+    private String status;                                //19状态
+    private String priority;                                //20优先级
+    private String executor;                                //21施工人
+    private String executeDepartment ;                                //22施工部门
+    private String upTime;                                //23挂起时间
+    private String feedbackTime;                                //24反馈时间
+    private String reservationStartTime;                                //25预约开始时间
+    private String reservationEndTime;                                //26预约结束时间
+    private String reservationWarnTime;                                //27预约预警时间
+    private String taskEndTime;                                //28截止时间
+    private String acceptTime;                                //29受理时间
+    private String channelName;                                //30渠道名称
+    private String arriveTime;                                //31到单时间
+    private String completedTime;                                //32竣工时间
+    private String isOverTime;                                //33是否超时
+    private double orderTimeLong;                                //34工单历时
+    private String lanPort;                                //35楼道交换机端口
+    private String eponPort;                                //36EPON端口
+    private String onuPort;                                //37ONU设备名称及端口
+    private String odnPort;                                //38分光器端口
+    private String odnName;                                //39分光器名称
+    private String vindicatePattern;                                //40维护模式
+    private String partnerNumber;                                //41合作方编码
+    private String partnerName;                                //42合作方名称
+    private String partnerId;                                //43合作方标识
+    private double executeTimeLong;                                //44自然施工时长
+    private String causeUp;                                //45挂起原因
+    private String causeFeedback;                                //46反馈原因
+    private String theDayDefer;                                //47当日装慢必赔
+    private String fileType;                                //48归档模式
+    private String theDay;                                //49当日装履约标识
+    private String newAddress;                                //50新装机地址
+    private String sourceStandAdd;                                //51原标准地址
+    private String newStandAdd;                                //52新标准地址
+    private String sourceAddress;                                //53原安装地址
     //升维字段================================================
-
     private int count;
     private String timesTamp ;
     private String id;
@@ -80,31 +64,6 @@ public class HistoryInstallOrderBean implements OrderBean  {
     private String standAddL6;
     private String year;
     private String month;
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-
-    public String getStandAddL6() {
-        return standAddL6;
-    }
-
-    public void setStandAddL6(String standAddL6) {
-        this.standAddL6 = standAddL6;
-    }
 
 
     public String getProduct() {
@@ -170,22 +129,6 @@ public class HistoryInstallOrderBean implements OrderBean  {
 
     public void setOrderDisposeTimeLong(double orderDisposeTimeLong) {
         this.orderDisposeTimeLong = orderDisposeTimeLong;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getStandAdd() {
-        return standAdd;
-    }
-
-    public void setStandAdd(String standAdd) {
-        this.standAdd = standAdd;
     }
 
     public String getArea() {
@@ -493,6 +436,14 @@ public class HistoryInstallOrderBean implements OrderBean  {
         this.causeFeedback = causeFeedback;
     }
 
+    public String getTheDayDefer() {
+        return theDayDefer;
+    }
+
+    public void setTheDayDefer(String theDayDefer) {
+        this.theDayDefer = theDayDefer;
+    }
+
     public String getFileType() {
         return fileType;
     }
@@ -501,6 +452,45 @@ public class HistoryInstallOrderBean implements OrderBean  {
         this.fileType = fileType;
     }
 
+    public String getTheDay() {
+        return theDay;
+    }
+
+    public void setTheDay(String theDay) {
+        this.theDay = theDay;
+    }
+
+    public String getNewAddress() {
+        return newAddress;
+    }
+
+    public void setNewAddress(String newAddress) {
+        this.newAddress = newAddress;
+    }
+
+    public String getSourceStandAdd() {
+        return sourceStandAdd;
+    }
+
+    public void setSourceStandAdd(String sourceStandAdd) {
+        this.sourceStandAdd = sourceStandAdd;
+    }
+
+    public String getNewStandAdd() {
+        return newStandAdd;
+    }
+
+    public void setNewStandAdd(String newStandAdd) {
+        this.newStandAdd = newStandAdd;
+    }
+
+    public String getSourceAddress() {
+        return sourceAddress;
+    }
+
+    public void setSourceAddress(String sourceAddress) {
+        this.sourceAddress = sourceAddress;
+    }
 
     public int getCount() {
         return count;
@@ -545,5 +535,29 @@ public class HistoryInstallOrderBean implements OrderBean  {
     @Override
     public void setImportFile(String importFile) {
         this.importFile = importFile;
+    }
+
+    public String getStandAddL6() {
+        return standAddL6;
+    }
+
+    public void setStandAddL6(String standAddL6) {
+        this.standAddL6 = standAddL6;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 }

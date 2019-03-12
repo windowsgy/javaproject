@@ -4,6 +4,7 @@ import base.ExcelUtils;
 import base.FileUtils;
 import base.ListUtils;
 import base.TranslationUtils;
+import etl.beans.HistoryFailureOrderBean;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -27,7 +28,7 @@ abstract class AbsOrders implements Orders {
     /**
      * 加载导出数据方法
      */
-    List<List<String>> loadExcelData(String filePath) {
+    List<List<String>> loadExcelData(String filePath,String isolationChar) {
         File xlsFile = new File(filePath);
         ExcelUtils excelUtils = new ExcelUtils();
         Workbook wb = null;
@@ -36,7 +37,8 @@ abstract class AbsOrders implements Orders {
         } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
-        return excelUtils.sheetToList(wb, 0);
+        List<List<String>> list = excelUtils.sheetToList(wb, 0,isolationChar);
+        return list;
     }
 
     /**

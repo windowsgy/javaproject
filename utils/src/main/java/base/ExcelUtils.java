@@ -18,9 +18,10 @@ public class ExcelUtils {
      * EXCEL 文件转换为map  EXCEL文件中每个表格名对应一个Key 。List 每行 ，List 每列
      * 去掉了表头数据
      * @param filePath excel文件路径
+     * @param isolationChar 分隔符,每个字段都要处理分隔符，把其过滤掉
      * @return map
      */
-    public Map<String, List<List<String>>> xlsToMap(String filePath) {
+    public Map<String, List<List<String>>> xlsToMap(String filePath ,String isolationChar) {
         //System.out.println("excel File Path is :"+filePath);
         Map<String, List<List<String>>> map = new HashMap<>();
         File xlsFile = new File(filePath);
@@ -32,7 +33,7 @@ public class ExcelUtils {
             int sheetNum = wb.getNumberOfSheets();//获取EXCEL表数量
             System.out.println("sheetNum is :" + sheetNum);
             for (int sheetIndex = 0; sheetIndex < sheetNum; sheetIndex++) {//遍历sheet(index 0开始)
-                List<List<String>> rowList = sheetToList(wb,sheetIndex);
+                List<List<String>> rowList = sheetToList(wb,sheetIndex,isolationChar);
 
                 //Map 中 key 名称为 文件名加表格名
                 String keyName = wb.getSheetName(sheetIndex);
@@ -51,9 +52,10 @@ public class ExcelUtils {
      *
      * @param wb         excel文件
      * @param sheetIndex 表索引
+     * @param isolationChar 分隔符,每个字段都要处理分隔符，把其过滤掉
      * @return 行列表
      */
-    public List<List<String>> sheetToList(Workbook wb, int sheetIndex) {
+    public List<List<String>> sheetToList(Workbook wb, int sheetIndex,String isolationChar) {
         List<List<String>> rowList = new ArrayList<>(); //返回的行列表
         try {
             Sheet sheet = wb.getSheetAt(sheetIndex);
@@ -95,6 +97,7 @@ public class ExcelUtils {
                             cellValue = cellValue.trim();
                             cellValue = cellValue.replace("\r", "");//替换换行
                             cellValue = cellValue.replace("\n", "");//替换回车
+                            cellValue = cellValue.replace(isolationChar,"");//替换分隔符
 
                         } else {
                             cellValue = "";
@@ -102,16 +105,13 @@ public class ExcelUtils {
                         cellList.add(cellValue);//每列添加
                         //System.out.println(cellValue);
                     }//end cells
-
                     Set set = new HashSet<>(cellList);//list转为set 判断所有字段是否都为""
                     if (!(set.size() == 1 && set.contains(""))) {//如果行内每一列数据不全部为"",才进行添加每行
                         rowList.add(cellList);//每行添加
                     }
-
                 }//end every row
             }//end rows
             rowList.remove(0);//去掉表头
-
         } catch (
                 Exception e) {
             System.out.println(e.getMessage());

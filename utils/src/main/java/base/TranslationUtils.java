@@ -28,8 +28,7 @@ public class TranslationUtils {
     public String beanToJson(Object obj) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            String json = objectMapper.writeValueAsString(obj);
-            return json;
+           return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;

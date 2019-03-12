@@ -192,4 +192,18 @@ public class StringUtils {
 
     }
 
+    /**
+     * 根据字符串返回数值
+     *
+     * @param string 字符串
+     * @return 数值
+     */
+    public long toLong(String string) {
+        StringUtils stringUtils = new StringUtils();
+        if (stringUtils.isNumeric(string)) {
+            return Long.parseLong(string);
+        } else return 0;
+
+    }
+
 }

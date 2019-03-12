@@ -24,6 +24,9 @@ public class InstallOrders extends AbsOrders implements Orders {
     }
 
     @Override
+    public List<List<String>> getFieldList(){return fieldList;}
+
+    @Override
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }

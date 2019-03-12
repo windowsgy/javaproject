@@ -48,11 +48,10 @@ public class BuildParams {
         Params.passWord = Params.paramsMap.get("password");
 
         //设置类路径
-
-        if (Params.dataType.equals(DataTypeEnum.HistoryInstallOrders.getValue()) && Params.loadLocalData) {
-            Params.fileFormat = "Excel";
-        } else {
+        if (Params.dataType.equals(DataTypeEnum.InstallOrders.getValue()) && Params.loadLocalData) {
             Params.fileFormat = "Html";
+        } else {
+            Params.fileFormat = "Excel";
         }
         Params.addFieldsClassPath = "etl.addFields."+Params.dataType;
         Params.ordersClassPath = "etl.orders."+Params.dataType;
