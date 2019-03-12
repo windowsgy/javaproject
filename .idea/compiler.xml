@@ -10,6 +10,7 @@
         <module name="joborderanalysis" />
         <module name="networkanalysize" />
         <module name="utils" />
+        <module name="workstation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -17,6 +18,7 @@
       <module name="joborderanalysis" target="1.8" />
       <module name="networkanalysize" target="1.8" />
       <module name="utils" target="1.8" />
+      <module name="workstation" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
